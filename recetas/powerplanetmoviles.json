@@ -1,0 +1,33 @@
+{
+    "localmode": false,
+    "url": "https://www.powerplanetonline.com/products/snippets/lazyProducts__categoryProducts/?PERPAGE=48&categoryId=516&ORDERBY=priority%2Cname&ORDERBYDIRECTION=ASC&PAGESTOSHOW=10",
+    "filehandle": "pruebaPlanet",
+    "product": {
+        "tab": {
+            "tagClass": "product-list product-list-default no-init",
+            "tagType": "figure",
+            "tagCapture": {
+                "product-list-content": {
+                    "childTag": "a",
+                    "childType": "link",
+                    "childCapture": "href"
+                },
+                "product-list-img": {
+                    "childTag": "img",
+                    "childType": "image",
+                    "childCapture": "src"
+                },
+                "product-list-title": {
+                    "childTag": "h3",
+                    "childType": "title",
+                    "childCapture": ""
+                },
+                "product-price": {
+                    "childTag": "span",
+                    "childType": "price",
+                    "childCapture": "content"
+                }
+            }
+        }
+    }
+}

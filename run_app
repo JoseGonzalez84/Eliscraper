@@ -1,0 +1,5 @@
+#!/bin/bash
+# ##### Iniciar la imagen docker
+# docker run -d --name zapascraping -v $(pwd):/var/www/html -p 8000:80 php:8.0-apache
+# ##### Arrancar la app
+# php main.php
