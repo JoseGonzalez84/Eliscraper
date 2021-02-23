@@ -1,0 +1,11 @@
+{
+    "main" : {
+        "debug" : true,
+        "dbase" : "sqlite"
+    }, 
+    "paths" : {
+        "tempDir"  : "./temp",
+        "dbString" : "./resources",
+        "recipes"  : "./recipes"
+    }
+}

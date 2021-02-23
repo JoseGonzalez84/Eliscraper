@@ -10,7 +10,7 @@
  * @package  Eliscraper
  * @author   José González <josegs84@gmail.com>
  * @license  GNU General Public License version 3
- * @version  1.0.1
+ * @version  1.0.2
  * @link     Link
  * _____ ____   ___    _______________     ___   ____ _____  ____   
  * | ___\\  |   | |   / ___|  ___/  _ \   / _ \ | __ \| ___\/  _ \  
@@ -36,8 +36,35 @@
  * ============================================================================
  */
 
+require_once 'functions.php';
+
+printLine('CIPOTES EN VINAGRE');
+printLine('CIPOTES EN VINAGRE', 'error');
+printLine('CIPOTES EN VINAGRE', 'warning');
+printLine('CIPOTES EN VINAGRE', 'success');
+
+exit;
+
+// Fichero de configuración de la aplicación
+$configurationFileName = "settings.json";
+if (file_exists($configurationFileName) !== true) {
+    echo "Ha habido un problema con el fichero de configuración. Se detiene el programa\n";   
+    exit;
+} else {
+    $appConfiguration = json_decode(file_get_contents($configurationFileName));
+}
 // Fichero que carga la configuración de la web a capturar
-$scrapSettings  = json_decode(file_get_contents("recetas/powerplanetmoviles.json"));
+$recipeFile = $argv[1];
+if (empty($recipeFile) === true) {
+    echo "No se ha indicado un fichero válido\n";
+    exit;
+} else if (file_exists($recipeFile) !== true) {
+    echo "Ha habido un problema con el fichero de configuración. Se detiene el programa\n";   
+    exit;
+} else {
+    $scrapSettings  = json_decode(file_get_contents("recetas/$recipeFile"));
+}
+
 // Elementos de configuración
 $localMode      = $scrapSettings->localmode ?? false;
 $urlToScrap     = $scrapSettings->url;
