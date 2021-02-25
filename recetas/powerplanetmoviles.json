@@ -1,5 +1,7 @@
 {
     "localmode": false,
+    "name" : "Moviles PowerPlanetOnline",
+    "description" : "",
     "url": "https://www.powerplanetonline.com/smartphones-smartphones?page=1&perPage=220&orderBy=brandName&orderByDirection=ASC&view=1",
     "filehandle": "pruebaPlanet",
     "product": {

@@ -1,7 +1,10 @@
 {
     "main" : {
         "debug" : true,
-        "dbase" : "sqlite"
+        "dbase" : "sqlite",
+        "defaults" : {
+            "outputFile" : "csv"
+        }
     }, 
     "paths" : {
         "tempDir"  : "./temp",

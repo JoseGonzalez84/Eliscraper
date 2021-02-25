@@ -33,11 +33,62 @@
  */
 
 function showHelp(bool $return = true) {
-    echo "Soy la ayuda";
+    $output = "=================================================================\n";
+    $output .= "_____ ____   ___    _______________     ___   ____ _____  ____   \n";
+    $output .= "| ___\\\\  |   | |   / ___|  ___/  _ \   / _ \ | __ \| ___\/  _ \  \n";
+    $output .= "| |___ | |   | |  / /__ | |   | |_\ \ / / \ \| |/ /| |_  | |_\ \ \n";
+    $output .= "| ___| | |   | |  \___ \| |   |  _  / | |_| ||  _/ | __| |  _  / \n";
+    $output .= "| |___ | |__ | |  ___/ /| |___| | \ \ |  _  || |   | |___| | \ \ \n";
+    $output .= "|____| |____\\\\_| |____/ |_____|_|  \_\|_| |_||_|   |_____|_|  \_\\\n";
+    $output .= "=================================================================\n";
+    echo $output;
 }
 
-function buildOutput(string $type, object $content) {
+function buildOutput(string $type, string $file, array $content) {
 
+    switch ($type) {
+        case 'json':
+        
+        break;
+        case 'db':
+        
+        break;
+        default:
+        case 'csv':
+            $output = fopen(sprintf("results/%s_%d.csv",$file,time()), 'a') or die(printLine('Error al crear el fichero CSV de salida', 'error'));
+            foreach ($content as $values) {
+                fputcsv($output, $values);
+            }
+
+            if (fclose($output) === true) {
+                printLine('Grabación de fichero exitosa.', 'success');
+            }
+
+        break;
+    }
+}
+
+
+/**
+ * Checks if defined type by user is allowed
+ */
+function checkAllowedOutputTypes(string $type){
+    $allowedTypes = [
+        'json', 'db', 'csv'
+    ];
+    
+    // Not allowed by default.
+    $allowed = false;
+
+    if (empty($type) === true) {
+        printLine('No se ha indicado un tipo de fichero.', 'warning');
+    } else if (in_array($type, $allowedTypes) === false) {
+        printLine('No se ha indicado un tipo de fichero válido.', 'warning');
+    } else {
+        $allowed = true;
+    }
+
+    return $allowed;
 }
 
 
@@ -53,12 +104,8 @@ function buildOutput(string $type, object $content) {
  */
 function strColor(string $str,string $fgcolor='white', string $bgcolor=null)
 {
-
     $out="";
 
-    //ncurses_init();
-
-    //if (ncurses_has_colors() === true) {
     if (true === true) {
         
     static $fgcolors = array(
@@ -105,8 +152,6 @@ function strColor(string $str,string $fgcolor='white', string $bgcolor=null)
     } else {
         $out = $str;
     }
-
-    //ncurses_end();
 
     return $out;
 }

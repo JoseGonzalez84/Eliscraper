@@ -36,45 +36,49 @@
  * ============================================================================
  */
 
-require_once 'functions.php';
-
-printLine('CIPOTES EN VINAGRE');
-printLine('CIPOTES EN VINAGRE', 'error');
-printLine('CIPOTES EN VINAGRE', 'warning');
-printLine('CIPOTES EN VINAGRE', 'success');
-
-exit;
-
-// Fichero de configuración de la aplicación
+// Cargar dependencias.
+require_once 'includes/functions.php';
+showHelp();
+// Captura los argumentos del programa
+$recipeFile = $argv[1] ?? '';
+$typeOutputFile = $argv[2] ?? '';
+// Fichero de configuración de la aplicación.
 $configurationFileName = "settings.json";
 if (file_exists($configurationFileName) !== true) {
-    echo "Ha habido un problema con el fichero de configuración. Se detiene el programa\n";   
-    exit;
+    printLine('Ha habido un problema con el fichero de configuración. Se detiene el programa', 'error');
+    exit(1);
 } else {
     $appConfiguration = json_decode(file_get_contents($configurationFileName));
+    printLine('Se ha cargado correctamente la configuración.', 'success');
 }
-// Fichero que carga la configuración de la web a capturar
-$recipeFile = $argv[1];
+// Fichero que carga la configuración de la web a capturar.
 if (empty($recipeFile) === true) {
-    echo "No se ha indicado un fichero válido\n";
-    exit;
-} else if (file_exists($recipeFile) !== true) {
-    echo "Ha habido un problema con el fichero de configuración. Se detiene el programa\n";   
-    exit;
+    printLine('No se ha indicado un fichero válido', 'error');
+    exit(2);
+} else if (file_exists("recetas/$recipeFile") !== true) {
+    printLine('Ha habido un problema con el fichero de configuración. Se detiene el programa', 'error');   
+    exit(3);
 } else {
-    $scrapSettings  = json_decode(file_get_contents("recetas/$recipeFile"));
+    $recipeFile = "recetas/$recipeFile";
+    $scrapSettings  = json_decode(file_get_contents($recipeFile));
+    printLine(sprintf('Se ha cargado correctamente la receta [%s].', $scrapSettings->name), 'success');
+}
+
+if (checkAllowedOutputTypes($typeOutputFile) === false) {
+    $typeOutputFile = $appConfiguration->main->defaults->outputFile;
+    printLine(sprintf('Se ha establecido el tipo de salida por defecto [%s].', strtoupper($typeOutputFile)), 'warning');
 }
 
 // Elementos de configuración
-$localMode      = $scrapSettings->localmode ?? false;
+$localMode      = $scrapSettings->localmode ?? true;
 $urlToScrap     = $scrapSettings->url;
 $outputScrap    = $scrapSettings->filehandle . ".txt";
 $inputCSV       = $scrapSettings->filehandle . ".csv";
 // Solo obtenemos la información de internet si no estamos en modo local.
-if ($localMode !== true) {
+if ($localMode === false) {
     $dataOrigin = curl_init($urlToScrap);
     $fileScraped = fopen($outputScrap, "w");
-    
+
     curl_setopt($dataOrigin, CURLOPT_FILE, $fileScraped);
     curl_setopt($dataOrigin, CURLOPT_HEADER, 0);
     
@@ -131,9 +135,5 @@ while (!feof($fileScraped)) {
 }
 fclose($fileScraped);
 // Exportar los datos a un fichero CSV.
-$fileCSV = fopen($inputCSV, 'a') or die('Error al crear el fichero CSV de salida');
-foreach ($gotchaElements as $values) {
-    fputcsv($fileCSV, $values);
-}
-fclose($fileCSV);
+buildOutput($typeOutputFile, $scrapSettings->filehandle, $gotchaElements);
 ?>
