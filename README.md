@@ -1,6 +1,6 @@
 # Eliscraper
 
-### Web Scraper basico v1.0.1 (con fines educativos)
+### Web Scraper basico v1.0.2 (con fines educativos)
 
 ## Que narices es esto?
 Se trata de un web scraper muy basico con el que pretendo obtener precios de articulos en webs comerciales.
@@ -24,3 +24,26 @@ Nooo, ni en broma. Pretendo ir mejorandolo poco a poco, mejorar rendimiento, per
 
 ## Lo puedo utilizar?
 Siempre que se cumpla la licencia y no se use para algo ilegal, puedes hacer lo que te de la gana, esto lo estoy haciendo para aprender.
+
+## :toolbox:	Cambios
+
+### 1.0.2
+- Se modifica el README.md para añadir los cambios.
+- La salida que se genera ahora informa de como se progresa.
+- Se ha añadido un fichero de funciones y otro de output.
+- Se añade fichero de configuración para poder modelar el comportamiento de la aplicación sin tocar el script.
+- Se permiten entrada de parámetros.
+- Se reestructura la aplicación para tener mas ordenado todo.
+
+## :construction: Proximas mejoras
+- Añadir conexión a Base de Datos.
+- Posibilidad de elegir salida de la ejecución (toda la info, solo detalles importantes, silenciosa)
+- Adición de mas recetas.
+- Sistema de ayuda efectiva.
+
+## :bulb: TODOs
+- Selección de idioma.
+- API.
+- Posibilidad de corregir fallos en linea.
+- Valorar el usar otro lenguaje de programación mas efectivo (Python, .NET Core)
+- 
