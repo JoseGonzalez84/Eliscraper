@@ -4,7 +4,8 @@
         "dbase" : "sqlite",
         "defaults" : {
             "outputFile" : "csv"
-        }
+        },
+        "verbosity" : 3
     }, 
     "paths" : {
         "tempDir"  : "./temp",
