@@ -1,6 +1,6 @@
 # Eliscraper
 
-### Web Scraper basico v1.0.2 (con fines educativos)
+### Web Scraper basico v1.0.3 (con fines educativos)
 
 ## :eyes:	Que narices es esto?
 Se trata de un web scraper muy basico con el que pretendo obtener precios de articulos en webs comerciales.
@@ -27,6 +27,12 @@ Siempre que se cumpla la licencia y no se use para algo ilegal, puedes hacer lo 
 
 ## :toolbox:	Cambios
 
+### 1.0.3 (Quique San Francisco)
+- Se añade control de información de salida de trabajo.
+- Se incrementa la seguridad de la aplicación, evitando excepciones.
+- Se corrige el flujo de ejecución.
+- Se añade una ayuda efectiva.
+
 ### 1.0.2
 - Se modifica el README.md para añadir los cambios.
 - La salida que se genera ahora informa de como se progresa.
@@ -37,12 +43,12 @@ Siempre que se cumpla la licencia y no se use para algo ilegal, puedes hacer lo 
 
 ## :construction: Proximas mejoras
 - Añadir conexión a Base de Datos.
-- Posibilidad de elegir salida de la ejecución (toda la info, solo detalles importantes, silenciosa)
 - Adición de mas recetas.
-- Sistema de ayuda efectiva.
+- Añadir mejoras de la conexión y obtención de datos vía cURL.
 
 ## :bulb: TODOs
 - Selección de idioma.
 - API.
 - Posibilidad de corregir fallos en linea.
 - Valorar el usar otro lenguaje de programación mas efectivo (Python, .NET Core)
+- Filtros de la propia receta indicados por parámetros.
