@@ -42,6 +42,7 @@ Siempre que se cumpla la licencia y no se use para algo ilegal, puedes hacer lo 
 - Se reestructura la aplicación para tener mas ordenado todo.
 
 ## :construction: Proximas mejoras
+- Añadir salida interactiva
 - Añadir conexión a Base de Datos.
 - Adición de mas recetas.
 - Añadir mejoras de la conexión y obtención de datos vía cURL.
